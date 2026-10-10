@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Христос в Псалмах — Вступление | Указатели</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', sans-serif;
+            background: #fdf8e7;
+            background-image: radial-gradient(circle at 10% 20%, rgba(218, 178, 115, 0.08) 0%, rgba(0,0,0,0) 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app-container {
+            max-width: 800px;
+            width: 100%;
+            background: #fff6e8;
+            border-radius: 48px;
+            box-shadow: 0 20px 35px rgba(100, 70, 30, 0.15);
+            padding: 30px 30px 40px;
+            border: 1px solid #f0dbb4;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header .studio-link {
+            display: inline-block;
+            font-size: 1rem;
+            color: #4A90D9;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #4A90D9;
+            padding-bottom: 2px;
+            transition: 0.2s;
+        }
+
+        .header .studio-link:hover {
+            color: #2c6aa0;
+            border-bottom-color: #2c6aa0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #4a3520;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            color: #7a5a3a;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .screen {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Персонаж */
+        .character-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .character-wrapper img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        /* Облачко с текстом */
+        .speech-bubble {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px 25px;
+            border: 1px solid #e6dacb;
+            position: relative;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #3e2c1a;
+            text-align: left;
+        }
+
+        .speech-bubble .name {
+            font-weight: 700;
+            color: #b48a62;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* Стихи */
+        .verse-block {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 25px;
+            border: 1px solid #e6dacb;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #3e2c1a;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .verse-block .ref {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: #b48a62;
+            font-size: 0.9rem;
+        }
+
+        .clickable-word {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        .clickable-word:hover {
+            background: #e6dacb;
+        }
+
+        .clickable-word.highlight {
+            background: #f4ede4;
+            text-decoration: underline;
+            text-decoration-color: #b48a62;
+            text-underline-offset: 4px;
+        }
+
+        /* Карточки Псалмов */
+        .psalms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .psalm-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 10px;
+            border: 1px solid #e6dacb;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .psalm-card:hover {
+            border-color: #c4a88a;
+            transform: translateY(-3px);
+        }
+
+        .psalm-card .num {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #b48a62;
+        }
+
+        .psalm-card .theme {
+            font-size: 0.9rem;
+            color: #4a3520;
+            margin-top: 4px;
+        }
+
+        /* Кнопки */
+        button {
+            background: #b48a62;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        button:hover {
+            background: #9a704a;
+            transform: translateY(-2px);
+        }
+
+        button.secondary {
+            background: #e6dacb;
+            color: #4a3520;
+        }
+
+        button.secondary:hover {
+            background: #d5c4b0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons button {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid #e6dacb;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer .studio-link {
+            color: #4A90D9;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #4A90D9;
+            padding-bottom: 2px;
+        }
+
+        .footer .small-note {
+            display: block;
+            margin-top: 6px;
+            color: #a58d7a;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .app-container { padding: 20px 15px; }
+            .header h1 { font-size: 1.6rem; }
+            .character-wrapper img { width: 150px; }
+            .speech-bubble { font-size: 1rem; padding: 15px 18px; }
+            .verse-block { font-size: 0.95rem; padding: 15px 18px; }
+            .psalms-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-buttons { flex-direction: column; }
+            button { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ШАПКА -->
+        <div class="header">
+            <a href="https://vk.com/ykazateli_of_christ" target="_blank" class="studio-link">
+                🕯️ Библейская студия анимации «Указатели»
+            </a>
+            <h1>📖 Христос в Псалмах</h1>
+            <p class="subtitle">Вступление: почему мы ищем Христа в Псалмах?</p>
+        </div>
+
+        <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+        <div id="screen1" class="screen active">
+            <div class="character-wrapper">
+                <img src="kristina-hello.gif" alt="Кристина">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Привет! Меня зовут Кристина. Я люблю исследовать Писание. А ты?
+            </div>
+            <div style="text-align:center;">
+                <button onclick="goToStep(2)">🔍 Давай исследуем вместе!</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 2: ВОПРОС -->
+        <div id="screen2" class="screen">
+            <div class="character-wrapper">
+                <img src="kristina-reading.gif" alt="Кристина читает">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Скажи, ты знал, что Сам Иисус говорил о Псалмах?
+            </div>
+            <div class="nav-buttons">
+                <button class="secondary" onclick="goToStep(3)">Да, знал</button>
+                <button onclick="goToStep(3)">Нет, не знал</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 3: СТИХ 1 -->
+        <div id="screen3" class="screen">
+            <div class="character-wrapper">
+                <img src="kristina-holding.gif" alt="Кристина говорит">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Вот что сказал Иисус:
+            </div>
+            <div class="verse-block">
+                «Исследуйте Писания, ибо вы думаете чрез них иметь жизнь вечную; а они <span class="clickable-word" onclick="highlightWord(this)">свидетельствуют о Мне</span>»
+                <span class="ref">— Иоанна 5:39</span>
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Видишь? Иисус говорит, что Писания — это о Нём!
+            </div>
+            <div style="text-align:center;">
+                <button onclick="goToStep(4)">➡️ Дальше</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 4: СТИХ 2 -->
+        <div id="screen4" class="screen">
+            <div class="character-wrapper">
+                <img src="kristina-holding.gif" alt="Кристина говорит">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                А вот ещё одно место. Иисус сказал ученикам:
+            </div>
+            <div class="verse-block">
+                «...надлежит исполниться всему, написанному о Мне в законе Моисеевом и в пророках и <span class="clickable-word" onclick="highlightWord(this)">псалмах</span>»
+                <span class="ref">— Луки 24:44</span>
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Вот почему мы будем искать Христа в Псалмах. Он Сам сказал, что там написано о Нём!
+            </div>
+            <div style="text-align:center;">
+                <button onclick="goToStep(5)">➡️ Показать Псалмы</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 5: КАРТА СЕРИИ -->
+        <div id="screen5" class="screen">
+            <div class="character-wrapper">
+                <img src="kristina-holding.gif" alt="Кристина говорит">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Я подготовила для тебя серию исследований. В каждом Псалме мы будем находить что-то о Христе. А вот и первые Псалмы для нашего исследования:
+            </div>
+            <div class="psalms-grid">
+                <div class="psalm-card">
+                    <div class="num">Псалом 2</div>
+                    <div class="theme">Сын Божий</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 15</div>
+                    <div class="theme">Воскресение</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 21</div>
+                    <div class="theme">Страдания</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 22</div>
+                    <div class="theme">Добрый Пастырь</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 40</div>
+                    <div class="theme">Предательство</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 109</div>
+                    <div class="theme">Священник вовек</div>
+                </div>
+                <div class="psalm-card">
+                    <div class="num">Псалом 117</div>
+                    <div class="theme">Краеугольный камень</div>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <button onclick="goToStep(6)">📖 Начать первое исследование</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 6: ФИНАЛ -->
+        <div id="screen6" class="screen">
+            <div class="character-wrapper">
+                <img src="kristina-hello.gif" alt="Кристина">
+            </div>
+            <div class="speech-bubble">
+                <span class="name">Кристина:</span>
+                Отлично! Скоро мы начнём наше первое исследование. А пока — поделись этим уроком с друзьями. Пусть они тоже увидят Христа в Псалмах!
+            </div>
+            <div style="text-align:center;">
+                <button class="secondary" onclick="resetAll()">🔄 Пройти заново</button>
+            </div>
+        </div>
+
+        <!-- ФУТЕР -->
+        <div class="footer">
+            <a href="https://vk.com/ykazateli_of_christ" target="_blank" class="studio-link">
+                🕯️ Изучайте Писание вместе с «Указателями»
+            </a>
+            <span class="small-note">Серия «Христос в Псалмах» — вступление</span>
+        </div>
+    </div>
+
+    <script>
+        // ============ НАВИГАЦИЯ ============
+        function goToStep(stepNumber) {
+            document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+            document.getElementById('screen' + stepNumber).classList.add('active');
+            document.querySelector('.app-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ============ ПОДСВЕТКА СЛОВ ============
+        function highlightWord(el) {
+            el.classList.toggle('highlight');
+        }
+
+        // ============ ПЕРЕЗАПУСК ============
+        function resetAll() {
+            goToStep(1);
+        }
+
+        // ============ ПЕРЕХОД К ПСАЛМУ 2 ============
+        // Когда второй урок будет готов, замените эту ссылку на реальную
+        // Сейчас она ведёт на заглушку: https://ykazateli.github.io/christ-in-psalms-2/
+    </script>
+</body>
+</html>
